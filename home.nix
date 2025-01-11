@@ -10,32 +10,9 @@
     gh
     ripgrep
     inter
-    lua-language-server
-    rust-analyzer
-    nodePackages.typescript-language-server
-    nodePackages.svelte-language-server
-    nodePackages.vls
-    nodePackages.volar
-    nodePackages.eslint
-    nodePackages.prettier
-    eslint_d
-    prettierd
-    vimPlugins.none-ls-nvim
   ];
 
-  fonts.fontconfig.enable = lib.mkForce true;
-  
-  # Neovim configuration
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    defaultEditor = true;
-    extraLuaConfig = ''
-    	${builtins.readFile ./nvim/init.lua}
-    	${builtins.readFile ./nvim/lua/config/lazy.lua}
-    '';
-  };
+  fonts.fontconfig.enable = true;
   
   # Zsh configuration
   programs.zsh = {
@@ -52,6 +29,92 @@
     };
   };
 
+  # Use NVF configuration
+  programs.nvf = {
+    enable = true;
+    settings = {
+      vim = {
+        viAlias = false;
+        vimAlias = true;
+        lsp = {
+          enable = true;
+        };
+        theme = {
+          enable = true;
+          name = "catppuccin";
+          style = "frappe";
+        };
+
+        statusline.lualine.enable = true;
+        telescope.enable = true;
+        autocomplete.nvim-cmp.enable = true;
+        treesitter = {
+          enable = true;
+          autotagHtml = true;
+          highlight = {
+            enable = true;
+            additionalVimRegexHighlighting = false;
+          };
+        };
+
+        visuals = {
+          nvim-web-devicons.enable = true;
+        };
+
+        terminal = {
+          toggleterm = {
+            enable = true;
+            lazygit = {
+              enable = true;
+            };
+          };
+        };
+
+        languages = {
+          enableLSP = true;
+          enableTreesitter = true;
+          nix.enable = true;
+          bash = {
+            enable = true;
+            format.enable = true;
+            lsp.enable = true;
+            treesitter.enable = true;
+          };
+          ts = {
+            enable = true;
+            extensions = {
+              ts-error-translator.enable = true;
+            };
+            extraDiagnostics = {
+              enable = true;
+              types = [ "eslint_d" ];
+            };
+            format.enable = true;
+            lsp = {
+              enable = true;
+            };
+            treesitter.enable = true;
+          };
+          rust.enable = true;
+          sql.enable = true;
+          html.enable = true;
+          go.enable = true;
+          lua.enable = true;
+          python.enable = true;
+          markdown.enable = true;
+          svelte = {
+            enable = true;
+            extraDiagnostics.enable = true;
+            format.enable = true;
+            lsp.enable = true;
+            treesitter.enable = true;
+          };
+          tailwind.enable = true;
+        };
+      };
+    };
+  };
+
   # Example of managing a specific file
   home.file = {
     ".p10k.zsh" = {
@@ -59,6 +122,8 @@
       executable = true;
     };
   };
+
+  #TO DO: Hyprland config
 
   # Let Home Manager manage itself
   programs.home-manager.enable = true;
