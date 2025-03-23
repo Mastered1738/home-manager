@@ -4,6 +4,10 @@
   home.username = "vinko";
   home.homeDirectory = "/home/vinko";
   home.stateVersion = "23.11";  # Ensure this matches the expected version
+  home.keyboard = {
+    layout = "us, hr";
+    options = "grp:alt_shift_toggle";
+  };
 
   # Install additional packages using `home.packages`
   home.packages = with pkgs; [
@@ -34,6 +38,7 @@
     enable = true;
     settings = {
       vim = {
+        useSystemClipboard = true;
         viAlias = false;
         vimAlias = true;
         lsp = {
@@ -57,6 +62,13 @@
           };
         };
 
+        filetree = {
+          nvimTree = {
+            enable = true;
+            openOnSetup = false;
+          };
+        };
+
         visuals = {
           nvim-web-devicons.enable = true;
         };
@@ -73,7 +85,16 @@
         languages = {
           enableLSP = true;
           enableTreesitter = true;
-          nix.enable = true;
+          nix = {
+            enable = true;
+            extraDiagnostics.enable = true;
+            lsp.enable = true;
+            treesitter.enable = true;
+            format = {
+              enable = true;
+              type = "alejandra";
+            };
+          };
           bash = {
             enable = true;
             format.enable = true;
@@ -95,12 +116,32 @@
             };
             treesitter.enable = true;
           };
-          rust.enable = true;
+          css = {
+            enable = true;
+            lsp.enable = true;
+            format.enable = true;
+            treesitter.enable = true;
+          };
+          rust = {
+            enable = true;
+            crates = {
+              enable = true;
+            };
+            dap.enable = true;
+            format.enable = true;
+            lsp.enable = true;
+            treesitter.enable = true;
+          };
           sql.enable = true;
           html.enable = true;
           go.enable = true;
           lua.enable = true;
-          python.enable = true;
+          python = {
+            enable = true;
+            format = {
+              enable = true;
+            };
+          };
           markdown.enable = true;
           svelte = {
             enable = true;
