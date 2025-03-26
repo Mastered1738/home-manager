@@ -43,13 +43,16 @@
         vimAlias = true;
         lsp = {
           enable = true;
+          null-ls.enable = true;
         };
+        ui.borders.plugins.lspsaga.enable = true;
         theme = {
           enable = true;
           name = "catppuccin";
           style = "frappe";
         };
 
+        useSystemClipboard = true;
         statusline.lualine.enable = true;
         telescope.enable = true;
         autocomplete.nvim-cmp.enable = true;
@@ -99,7 +102,6 @@
             enable = true;
             format.enable = true;
             lsp.enable = true;
-            treesitter.enable = true;
           };
           ts = {
             enable = true;
