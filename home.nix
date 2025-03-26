@@ -47,8 +47,8 @@
         ui.borders.plugins.lspsaga.enable = true;
         theme = {
           enable = true;
-          name = "catppuccin";
-          style = "frappe";
+          name = "gruvbox";
+          style = "dark";
         };
 
         useSystemClipboard = true;
