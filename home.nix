@@ -38,7 +38,6 @@
     enable = true;
     settings = {
       vim = {
-        useSystemClipboard = true;
         viAlias = false;
         vimAlias = true;
         lsp = {
