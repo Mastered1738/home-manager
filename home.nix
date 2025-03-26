@@ -68,6 +68,9 @@
           nvimTree = {
             enable = true;
             openOnSetup = false;
+            setupOpts.filters = {
+              dotfiles = true;
+            };
           };
         };
 
