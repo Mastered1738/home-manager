@@ -1,9 +1,13 @@
-{ config, pkgs, lib, ... }:
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   # Home Manager configuration for vinko
   home.username = "vinko";
   home.homeDirectory = "/home/vinko";
-  home.stateVersion = "23.11";  # Ensure this matches the expected version
+  home.stateVersion = "23.11"; # Ensure this matches the expected version
   home.keyboard = {
     layout = "us, hr";
     options = "grp:alt_shift_toggle";
@@ -17,7 +21,7 @@
   ];
 
   fonts.fontconfig.enable = true;
-  
+
   # Zsh configuration
   programs.zsh = {
     enable = true;
@@ -27,8 +31,11 @@
     zplug = {
       enable = true;
       plugins = [
-        { name = "zsh-users/zsh-autosuggestions"; }
-        { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; }
+        {name = "zsh-users/zsh-autosuggestions";}
+        {
+          name = "romkatv/powerlevel10k";
+          tags = [as:theme depth:1];
+        }
       ];
     };
   };
@@ -38,17 +45,36 @@
     enable = true;
     settings = {
       vim = {
+        keymaps = [
+          {
+            key = "<C-s>";
+            mode = "n"; # normal mode
+            silent = true;
+            action = ":wa<CR>";
+          }
+          {
+            key = "<C-s>";
+            mode = "i"; # insert mode
+            silent = true;
+            action = "<Esc>:wa<CR>a";
+          }
+        ];
+
         viAlias = false;
         vimAlias = true;
         lsp = {
           enable = true;
           null-ls.enable = true;
+          formatOnSave = true;
         };
         ui.borders.plugins.lspsaga.enable = true;
         theme = {
           enable = true;
           name = "gruvbox";
           style = "dark";
+        };
+        options = {
+          tabstop = 2;
         };
 
         useSystemClipboard = true;
@@ -90,6 +116,7 @@
         languages = {
           enableLSP = true;
           enableTreesitter = true;
+          enableFormat = true;
           nix = {
             enable = true;
             extraDiagnostics.enable = true;
@@ -112,7 +139,7 @@
             };
             extraDiagnostics = {
               enable = true;
-              types = [ "eslint_d" ];
+              types = ["eslint_d"];
             };
             format.enable = true;
             lsp = {
