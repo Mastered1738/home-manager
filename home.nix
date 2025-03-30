@@ -58,6 +58,12 @@
             silent = true;
             action = "<Esc>:wa<CR>a";
           }
+          {
+            key = "<leader>rn";
+            mode = "n";
+            silent = true;
+            action = "<cmd>lua vim.lsp.buf.rename()<CR>";
+          }
         ];
 
         viAlias = false;
